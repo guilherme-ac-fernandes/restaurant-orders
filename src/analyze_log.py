@@ -1,7 +1,7 @@
 import csv
 
 
-def generate_amount_foods(data, person):
+def generate_dict_foods(data, person):
     dict_food = {}
     for name, food, _ in data:
         if name == person:
@@ -13,8 +13,8 @@ def generate_amount_foods(data, person):
 
 
 def find_most_common_food(data, person):
-    dict_food = generate_amount_foods(data, person)
-    
+    dict_food = generate_dict_foods(data, person)
+
     most_order_amout = 0
     most_order_food = ''
     for food, amount in dict_food.items():
@@ -39,7 +39,7 @@ def get_never_went_by_person(data, person):
 def analyze_log(path_to_file):
     if not path_to_file.endswith('.csv'):
         raise FileNotFoundError(f"Extensão inválida: '{path_to_file}'")
-    
+
     try:
         with open(path_to_file, encoding="utf-8") as file:
             file_info = list(csv.reader(file, delimiter=",", quotechar='"'))
@@ -49,7 +49,7 @@ def analyze_log(path_to_file):
 
     else:
         maria_eats = find_most_common_food(file_info, 'maria')
-        arnaldo_food = generate_amount_foods(file_info, 'arnaldo')['hamburguer']
+        arnaldo_food = generate_dict_foods(file_info, 'arnaldo')['hamburguer']
         joao_never_ask = get_never_ask_food_by_person(file_info, 'joao')
         joao_never_went = get_never_went_by_person(file_info, 'joao')
 

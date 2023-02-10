@@ -1,9 +1,10 @@
 import random
 
+
 class TrackOrders:
     def __init__(self):
         self._data = []
-    
+
     def __len__(self):
         return len(self._data)
 
@@ -30,7 +31,7 @@ class TrackOrders:
                 most_order_amout = amount
                 most_order_food = food
         return most_order_food
-    
+
     def get_all_foods(self):
         return {food for _, food, _ in self._data}
 
@@ -40,7 +41,7 @@ class TrackOrders:
                            for name, food, _ in self._data
                            if name == customer}
         return all_foods.difference(all_person_food)
-    
+
     def get_all_days(self):
         return {day for _, _, day in self._data}
 
@@ -58,7 +59,7 @@ class TrackOrders:
                 dict_days[day] = 1
             else:
                 dict_days[day] += 1
-    
+
         most_busiest_amout = 0
         most_busiest_day = ''
         for day, amount in dict_days.items():
@@ -74,8 +75,13 @@ class TrackOrders:
                 dict_days[day] = 1
             else:
                 dict_days[day] += 1
-    
-        least_busy_day, least_busy_amout = random.choice(list(dict_days.items()))
+
+        # Seleção de uma chave aleatória proveniente da Solução
+        # proveniente do Stack OverFlow
+        # source: https://stackoverflow.com/questions/4859292/h
+        # ow-to-get-a-random-value-from-dictionary
+        random_item = random.choice(list(dict_days.items()))
+        least_busy_day, least_busy_amout = random_item
         for day, amount in dict_days.items():
             if amount < least_busy_amout:
                 least_busy_amout = amount
