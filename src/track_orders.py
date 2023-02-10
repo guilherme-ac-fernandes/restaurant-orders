@@ -10,15 +10,19 @@ class TrackOrders:
     def add_new_order(self, customer, order, day):
         self._data.append([customer, order, day])
 
-    def get_most_ordered_dish_per_customer(self, customer):
+    def generate_foods_dict(self, customer):
         dict_food = {}
         for name, food, _ in self._data:
-                if name == customer:
-                    if food not in dict_food:
-                        dict_food[food] = 1
-                    else:
-                        dict_food[food] += 1
-    
+            if name == customer:
+                if food not in dict_food:
+                    dict_food[food] = 1
+                else:
+                    dict_food[food] += 1
+        return dict_food
+
+    def get_most_ordered_dish_per_customer(self, customer):
+        dict_food = self.generate_foods_dict(customer)
+
         most_order_amout = 0
         most_order_food = ''
         for food, amount in dict_food.items():
@@ -26,24 +30,34 @@ class TrackOrders:
                 most_order_amout = amount
                 most_order_food = food
         return most_order_food
+    
+    def get_all_foods(self):
+        return {food for _, food, _ in self._data}
 
     def get_never_ordered_per_customer(self, customer):
-        all_foods = {food for _, food, _ in self._data}
-        all_person_food = {food for name, food, _ in self._data if name == customer}
+        all_foods = self.get_all_foods()
+        all_person_food = {food
+                           for name, food, _ in self._data
+                           if name == customer}
         return all_foods.difference(all_person_food)
+    
+    def get_all_days(self):
+        return {day for _, _, day in self._data}
 
     def get_days_never_visited_per_customer(self, customer):
-        all_days = {day for _, _, day in self._data}
-        all_person_day = {day for name, _, day in self._data if name == customer}
+        all_days = self.get_all_foods()
+        all_person_day = {day
+                          for name, _, day in self._data
+                          if name == customer}
         return all_days.difference(all_person_day)
 
     def get_busiest_day(self):
         dict_days = {}
         for _, _, day in self._data:
-                if day not in dict_days:
-                    dict_days[day] = 1
-                else:
-                    dict_days[day] += 1
+            if day not in dict_days:
+                dict_days[day] = 1
+            else:
+                dict_days[day] += 1
     
         most_busiest_amout = 0
         most_busiest_day = ''
@@ -56,10 +70,10 @@ class TrackOrders:
     def get_least_busy_day(self):
         dict_days = {}
         for _, _, day in self._data:
-                if day not in dict_days:
-                    dict_days[day] = 1
-                else:
-                    dict_days[day] += 1
+            if day not in dict_days:
+                dict_days[day] = 1
+            else:
+                dict_days[day] += 1
     
         least_busy_day, least_busy_amout = random.choice(list(dict_days.items()))
         for day, amount in dict_days.items():
