@@ -46,7 +46,7 @@ class TrackOrders:
         return {day for _, _, day in self._data}
 
     def get_days_never_visited_per_customer(self, customer):
-        all_days = self.get_all_foods()
+        all_days = self.get_all_days()
         all_person_day = {day
                           for name, _, day in self._data
                           if name == customer}
