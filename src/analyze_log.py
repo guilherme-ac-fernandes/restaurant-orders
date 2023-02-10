@@ -23,7 +23,7 @@ def find_most_common_food(data, person):
     return most_order_food
 
 
-def get_all_food_by_person(data, person):
+def get_never_ask_food_by_person(data, person):
     all_foods = {food for _, food, _ in data}
     all_person_food = {food for name, food, _ in data if name == person}
     return all_foods.difference(all_person_food)
@@ -47,7 +47,7 @@ def analyze_log(path_to_file):
     else:
         maria_eats = find_most_common_food(file_info, 'maria')
         arnaldo_hamburguer = generate_amount_foods(file_info, 'arnaldo')['hamburguer']
-        joao_never_ask = get_all_food_by_person(file_info, 'joao')
+        joao_never_ask = get_never_ask_food_by_person(file_info, 'joao')
         joao_never_went = get_never_went_by_person(file_info, 'joao')
 
         result = f'{maria_eats}\n{arnaldo_hamburguer}\n{joao_never_ask}\n{joao_never_went}\n'
