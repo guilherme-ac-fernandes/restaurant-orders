@@ -1,22 +1,69 @@
+import random
+
 class TrackOrders:
-    # aqui deve expor a quantidade de estoque
+    def __init__(self):
+        self._data = []
+    
     def __len__(self):
-        pass
+        return len(self._data)
 
     def add_new_order(self, customer, order, day):
-        pass
+        self._data.append([customer, order, day])
 
     def get_most_ordered_dish_per_customer(self, customer):
-        pass
+        dict_food = {}
+        for name, food, _ in self._data:
+                if name == customer:
+                    if food not in dict_food:
+                        dict_food[food] = 1
+                    else:
+                        dict_food[food] += 1
+    
+        most_order_amout = 0
+        most_order_food = ''
+        for food, amount in dict_food.items():
+            if amount >= most_order_amout:
+                most_order_amout = amount
+                most_order_food = food
+        return most_order_food
 
     def get_never_ordered_per_customer(self, customer):
-        pass
+        all_foods = {food for _, food, _ in self._data}
+        all_person_food = {food for name, food, _ in self._data if name == customer}
+        return all_foods.difference(all_person_food)
 
     def get_days_never_visited_per_customer(self, customer):
-        pass
+        all_days = {day for _, _, day in self._data}
+        all_person_day = {day for name, _, day in self._data if name == customer}
+        return all_days.difference(all_person_day)
 
     def get_busiest_day(self):
-        pass
+        dict_days = {}
+        for _, _, day in self._data:
+                if day not in dict_days:
+                    dict_days[day] = 1
+                else:
+                    dict_days[day] += 1
+    
+        most_busiest_amout = 0
+        most_busiest_day = ''
+        for day, amount in dict_days.items():
+            if amount >= most_busiest_amout:
+                most_busiest_amout = amount
+                most_busiest_day = day
+        return most_busiest_day
 
     def get_least_busy_day(self):
-        pass
+        dict_days = {}
+        for _, _, day in self._data:
+                if day not in dict_days:
+                    dict_days[day] = 1
+                else:
+                    dict_days[day] += 1
+    
+        least_busy_day, least_busy_amout = random.choice(list(dict_days.items()))
+        for day, amount in dict_days.items():
+            if amount < least_busy_amout:
+                least_busy_amout = amount
+                least_busy_day = day
+        return least_busy_day
