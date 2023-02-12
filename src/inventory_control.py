@@ -16,10 +16,35 @@ class InventoryControl:
     }
 
     def __init__(self):
-        pass
+        self._inventory = {
+            'pao': 0,
+            'carne': 0,
+            'queijo': 0,
+            'molho': 0,
+            'presunto': 0,
+            'massa': 0,
+            'frango': 0,
+        }
 
     def add_new_order(self, customer, order, day):
-        pass
+        for ingredient in self.INGREDIENTS[order]:
+            if self._inventory[ingredient] < self.MINIMUM_INVENTORY[ingredient]:
+                self._inventory[ingredient] += 1
+            else:
+                return False
 
     def get_quantities_to_buy(self):
-        pass
+        return self._inventory
+
+    def get_available_dishes(self):
+        available_dishes = set()
+        
+        for dish, ingredients in self.INGREDIENTS.items():
+            count_available = 0
+            for ingredient in ingredients:
+                if self._inventory[ingredient] < self.MINIMUM_INVENTORY[ingredient]:
+                    count_available += 1
+            if count_available == len(ingredients):
+                available_dishes.add(dish)
+
+        return available_dishes
