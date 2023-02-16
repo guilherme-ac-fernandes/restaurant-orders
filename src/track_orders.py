@@ -35,15 +35,15 @@ class TrackOrders:
     def get_all_foods(self):
         return {food for _, food, _ in self._data}
 
+    def get_all_days(self):
+        return {day for _, _, day in self._data}
+
     def get_never_ordered_per_customer(self, customer):
         all_foods = self.get_all_foods()
         all_person_food = {food
                            for name, food, _ in self._data
                            if name == customer}
         return all_foods.difference(all_person_food)
-
-    def get_all_days(self):
-        return {day for _, _, day in self._data}
 
     def get_days_never_visited_per_customer(self, customer):
         all_days = self.get_all_days()
