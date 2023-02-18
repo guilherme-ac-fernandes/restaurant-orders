@@ -62,3 +62,7 @@ def analyze_log(path_to_file):
 
         with open('data/mkt_campaign.txt', mode='w') as file_txt:
             file_txt.write(''.join(result))
+
+
+if __name__ == "__main__":
+    analyze_log("data/orders_1.csv")

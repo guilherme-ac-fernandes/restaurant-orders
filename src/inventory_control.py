@@ -60,3 +60,19 @@ class InventoryControl:
         with open(path_to_file, 'a', encoding='UTF8') as file:
             writer = csv.writer(file)
             writer.writerow(row)
+
+
+if __name__ == "__main__":
+    inventory = InventoryControl()
+    inventory.add_new_order("jorge", "hamburguer", "terça-feira")
+    inventory.add_new_order("maria", "pizza", "terça-feira")
+
+    print(
+        'Quantidade de ingredientes para comprar:',
+        inventory.get_quantities_to_buy(),
+    )
+
+    print(
+        'Pratos disponíveis no cardápio:',
+        inventory.get_available_dishes(),
+    )
