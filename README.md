@@ -1,4 +1,4 @@
-# Projeto Restaurant Orders 🍳👩🏻‍🍳🫒
+# Projeto Restaurant Orders 🍳🫒
 
 Consiste em uma aplicação para auxiliar na gestão do inventário e gerenciamento dos pedidos de uma Lanchonete fictícia. 
 
