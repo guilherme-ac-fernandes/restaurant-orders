@@ -68,8 +68,10 @@ python3 -m pip install -r dev-requirements.txt // instalação das dependências
 >
 > comando: python3 -m src.main
 
-Retorno:
+
 ```
+Retorno:
+
 hamburguer
 {'coxinha', 'pizza', 'misto-quente'}
 {'segunda-feira', 'sabado'}
@@ -91,8 +93,9 @@ Quais pratos 'joao' nunca pediu?
 Quais dias 'joao' nunca foi à lanchonete?
 ```
 
-Retorno:
 ```
+Retorno:
+
 hamburguer
 1
 {'coxinha', 'misto-quente', 'pizza'}
@@ -102,9 +105,9 @@ hamburguer
 #### Análises contínuas
 > comando: python3 -m src.track_orders
 
+```
 Retorno:
 
-```
 Adicionando pedido: ('jorge', 'frango', 'domingo')
 Adicionando pedido: ('maria', 'frango', 'segunda-feira')
 Adicionando pedido: ('arnaldo', 'peixe', 'sábado')
@@ -121,9 +124,9 @@ Dia de menor movimento: domingo
 #### Controle de estoque
 > comando: python3 -m src.inventory_control
 
+```
 Retorno:
 
-```
 Quantidade de ingredientes para comprar: {'pao': 1, 'carne': 1, 'queijo': 2, 'molho': 1, 'presunto': 0, 'massa': 1, 'frango': 0}
 Pratos disponíveis no cardápio: {'misto-quente', 'coxinha', 'pizza', 'hamburguer'}
 ```
